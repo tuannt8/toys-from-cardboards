@@ -17,6 +17,7 @@ enum colorCode{
 typedef std::vector<float> floatVector ;
 typedef QVector3D vec3 ;
 
+
 class GLManager
 {
     // gourand shader
@@ -50,7 +51,7 @@ public:
 public:
     float DPI_scale;
 
-    float view_distance(){return cam_viewDistane;}
+    float & view_distance(){return cam_viewDistane;}
 
     GLManager();
     ~GLManager();

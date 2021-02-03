@@ -39,8 +39,11 @@ public:
     int nbSegment = 10;
     void drawTest();
 
+        void reduceMesh(float ratio);
+
 public slots:
     void paint();
+
 
 private:
     QSize m_viewportSize;
@@ -81,7 +84,8 @@ public:
     Q_PROPERTY(QString fr MEMBER frameRate NOTIFY tChanged)
     QString frameRate;
 
-     Q_INVOKABLE void doubleRes(){m_renderer->nbSegment *= 2;}
+//     Q_INVOKABLE void doubleRes(){m_renderer->nbSegment *= 2;}
+    Q_INVOKABLE void reduceMesh(float ratio){m_renderer->reduceMesh(ratio);};
 signals:
     void tChanged();
     void UIChanged();

@@ -11,6 +11,8 @@
 
 #include <QElapsedTimer>
 
+extern int appState;
+
 using namespace std;
 
 #define POINT_TEST
@@ -102,22 +104,17 @@ void SquircleRenderer::paint()
         GL()->Init();
     }
 
-//    GL()->StartGL(m_viewportSize.width(), m_viewportSize.height());
-    GL()->StartGLOrtho(m_viewportSize.width(), m_viewportSize.height());
-
-//    GL()->rotateModel(2,2);
-////    // Global coord
-//    float dis = 1;//GL()->view_distance() / 3;
-//    QVector<QVector3D> coords = {
-//        QVector3D(dis,0,0), QVector3D(0,dis,0), QVector3D(0,0,dis)
-//    };
-//    for(auto c : coords)
-//    {
-//        GL()->drawLineSimple(vec3(0,0,0), c, c);
-//    }
-
-//    mesh.draw();
-    mesh.drawTriangle();
+    if(appState == 0)
+    {
+        GL()->StartGL(m_viewportSize.width(), m_viewportSize.height());
+        GL()->rotateModel(2,2);
+        mesh.draw();
+    }
+    else
+    {
+        GL()->StartGLOrtho(m_viewportSize.width(), m_viewportSize.height());
+        mesh.drawTriangle();
+    }
 
     GL()->EndGL();
 
@@ -125,7 +122,10 @@ void SquircleRenderer::paint()
     // mixing with raw OpenGL.
     m_window->resetOpenGLState();
 
-
-
     emit instance->UIChanged();
+}
+
+void SquircleRenderer::reduceMesh(float ratio)
+{
+    mesh.reduceMesh(ratio);
 }

@@ -156,7 +156,6 @@ void GLManager::StartGLOrtho(int width, int height)
         m_projectionMatrix.scale((float)height/width,1,1);
     else
         m_projectionMatrix.scale(1,(float)width/height,1);
-//    m_projectionMatrix.perspective(45, (float)width/height, 0.1f, 1000);
 
     glViewport(0, 0, width, height);
 
@@ -179,8 +178,8 @@ void GLManager::StartGL(int width, int height)
     QVector3D eye = center + cam_eye * eyeDistance;
     QVector3D up = cam_up;
 
-//    m_viewMatrix.lookAt(eye, center, up);
-//    m_projectionMatrix.perspective(45, (float)width/height, 0.1f, 1000);
+    m_viewMatrix.lookAt(eye, center, up);
+    m_projectionMatrix.perspective(45, (float)width/height, 0.1f, 1000);
 
     glViewport(0, 0, width, height);
 

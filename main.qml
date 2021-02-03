@@ -24,12 +24,27 @@ ApplicationWindow {
             loops: Animation.Infinite
             running: true
         }
+    }
 
+    Text {
+        id: triangleIdx
+        x: parent.width / 2
+        y: parent.height / 2
+        text: qsTr("text")
     }
 
 
-    Text{
-        text: glVisualization.fr
+    Slider{
+        width: parent.width
         y: parent.height - height
+        value: 1
+        from: 0.01
+        to: 1
+        live: false
+
+        onValueChanged: {
+            console.log("reduce to " + value)
+            glVisualization.reduceMesh(value)
+        }
     }
 }
