@@ -14,6 +14,7 @@
 using namespace std;
 
 int appState = 0;
+int mainAxis = 1;
 
 
 int main(int argc, char *argv[])
@@ -24,10 +25,6 @@ int main(int argc, char *argv[])
 
     // Link C++ class with QML
     qmlRegisterType<GLWindow>("dtu.mek.petsc", 1, 0, "GLWindow");
-
-//    qmlRegisterType<TopOptParameterControl>("dtu.mek.petsc", 1, 0, "TopOptParam");
-
-
     QQmlApplicationEngine engine;
 
 

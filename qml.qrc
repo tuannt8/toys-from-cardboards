@@ -12,6 +12,7 @@
         <file>shader/wire.frag</file>
         <file>shader/wire.geom</file>
         <file>shader/FragmentShader.glsl</file>
+        <file>qml/TextShadow.qml</file>
     </qresource>
     <qresource prefix="/resource">
         <file>shader/gouraud.frag</file>

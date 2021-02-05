@@ -26,6 +26,7 @@ class GLManager
     QMatrix4x4 m_projectionMatrix, // perspective
                 m_globalModelMatrix, // User rotate
                 m_viewMatrix; // lookat
+    QMatrix4x4 m_orthoMat;
 
     // Simple shader
     QOpenGLShaderProgram * m_simpleShader = nullptr;
@@ -66,6 +67,7 @@ public:
     void EndGL();
 
     void rotateModel(float x, float y); // Control camera
+    void resetRotation(){m_globalModelMatrix.setToIdentity();};
 
     void drawGourand(const std::vector<float> & point,
               const std::vector<float> & normal,

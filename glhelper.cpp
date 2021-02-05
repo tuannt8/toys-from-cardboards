@@ -152,12 +152,23 @@ void GLManager::StartGLOrtho(int width, int height)
     m_projectionMatrix.setToIdentity();
 
     m_viewMatrix.ortho(0,0,1,1,-1, 1);
-    if(width > height)
-        m_projectionMatrix.scale((float)height/width,1,1);
-    else
-        m_projectionMatrix.scale(1,(float)width/height,1);
+//    if(width > height)
+//        m_projectionMatrix.scale((float)height/width,1,1);
+//    else
+//        m_projectionMatrix.scale(1,(float)width/height,1);
 
-    glViewport(0, 0, width, height);
+
+
+    if(width > height)
+    {
+        auto gap = (width - height)/2.0;
+        glViewport(gap, 0, height, height);
+    }
+    else
+    {
+        auto gap = (height - width)/2.0;
+        glViewport(0, gap, width, width);
+    }
 
     glClearColor(0., 0., 0., 0);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -183,7 +194,6 @@ void GLManager::StartGL(int width, int height)
 
     glViewport(0, 0, width, height);
 
-
     m_lightPos = QVector3D(0,-4,0);// m_viewMatrix * m_projectionMatrix * QVector3D(0,3,0);
 
 //    glMatrixMode(GL_MODELVIEW);
@@ -192,7 +202,7 @@ void GLManager::StartGL(int width, int height)
 //    glShadeModel(GL_SMOOTH);  // Enables Smooth Color Shading
 //    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
-    glClearColor(0.3, 0.4, 0.5, 1);
+    glClearColor(0., 0., 0, 1);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     glCullFace(GL_FRONT);
